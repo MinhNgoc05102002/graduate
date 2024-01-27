@@ -1,0 +1,17 @@
+F:\DocumentD\Ki2Nam3\DOAN\Quizlet_Real\Project\GraduateProject\GP.DAL\bin\Debug\net6.0\GP.DAL.deps.json
+F:\DocumentD\Ki2Nam3\DOAN\Quizlet_Real\Project\GraduateProject\GP.DAL\bin\Debug\net6.0\GP.DAL.dll
+F:\DocumentD\Ki2Nam3\DOAN\Quizlet_Real\Project\GraduateProject\GP.DAL\bin\Debug\net6.0\GP.DAL.pdb
+F:\DocumentD\Ki2Nam3\DOAN\Quizlet_Real\Project\GraduateProject\GP.DAL\bin\Debug\net6.0\GP.Common.dll
+F:\DocumentD\Ki2Nam3\DOAN\Quizlet_Real\Project\GraduateProject\GP.DAL\bin\Debug\net6.0\GP.Models.dll
+F:\DocumentD\Ki2Nam3\DOAN\Quizlet_Real\Project\GraduateProject\GP.DAL\bin\Debug\net6.0\GP.Common.pdb
+F:\DocumentD\Ki2Nam3\DOAN\Quizlet_Real\Project\GraduateProject\GP.DAL\bin\Debug\net6.0\GP.Models.pdb
+F:\DocumentD\Ki2Nam3\DOAN\Quizlet_Real\Project\GraduateProject\GP.DAL\obj\Debug\net6.0\GP.DAL.csproj.AssemblyReference.cache
+F:\DocumentD\Ki2Nam3\DOAN\Quizlet_Real\Project\GraduateProject\GP.DAL\obj\Debug\net6.0\GP.DAL.GeneratedMSBuildEditorConfig.editorconfig
+F:\DocumentD\Ki2Nam3\DOAN\Quizlet_Real\Project\GraduateProject\GP.DAL\obj\Debug\net6.0\GP.DAL.AssemblyInfoInputs.cache
+F:\DocumentD\Ki2Nam3\DOAN\Quizlet_Real\Project\GraduateProject\GP.DAL\obj\Debug\net6.0\GP.DAL.AssemblyInfo.cs
+F:\DocumentD\Ki2Nam3\DOAN\Quizlet_Real\Project\GraduateProject\GP.DAL\obj\Debug\net6.0\GP.DAL.csproj.CoreCompileInputs.cache
+F:\DocumentD\Ki2Nam3\DOAN\Quizlet_Real\Project\GraduateProject\GP.DAL\obj\Debug\net6.0\GP.DAL.csproj.CopyComplete
+F:\DocumentD\Ki2Nam3\DOAN\Quizlet_Real\Project\GraduateProject\GP.DAL\obj\Debug\net6.0\GP.DAL.dll
+F:\DocumentD\Ki2Nam3\DOAN\Quizlet_Real\Project\GraduateProject\GP.DAL\obj\Debug\net6.0\refint\GP.DAL.dll
+F:\DocumentD\Ki2Nam3\DOAN\Quizlet_Real\Project\GraduateProject\GP.DAL\obj\Debug\net6.0\GP.DAL.pdb
+F:\DocumentD\Ki2Nam3\DOAN\Quizlet_Real\Project\GraduateProject\GP.DAL\obj\Debug\net6.0\ref\GP.DAL.dll
