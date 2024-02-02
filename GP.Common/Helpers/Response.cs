@@ -40,6 +40,11 @@ namespace GP.Common.Helpers
         /// </summary>
         //public string MsgError { get; set; }
 
+        /// <summary>
+        /// object lỗi
+        /// </summary>
+        public object ExceptionInfo { get; set; }
+
         #endregion
 
         public Response()

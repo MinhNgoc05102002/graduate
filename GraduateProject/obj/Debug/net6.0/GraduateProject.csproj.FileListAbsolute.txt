@@ -87,3 +87,8 @@ F:\DocumentD\Ki2Nam3\DOAN\Quizlet_Real\Project\GraduateProject\GraduateProject\o
 F:\DocumentD\Ki2Nam3\DOAN\Quizlet_Real\Project\GraduateProject\GraduateProject\obj\Debug\net6.0\GraduateProject.pdb
 F:\DocumentD\Ki2Nam3\DOAN\Quizlet_Real\Project\GraduateProject\GraduateProject\obj\Debug\net6.0\GraduateProject.genruntimeconfig.cache
 F:\DocumentD\Ki2Nam3\DOAN\Quizlet_Real\Project\GraduateProject\GraduateProject\obj\Debug\net6.0\ref\GraduateProject.dll
+F:\DocumentD\Ki2Nam3\DOAN\Quizlet_Real\Project\GraduateProject\GraduateProject\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+F:\DocumentD\Ki2Nam3\DOAN\Quizlet_Real\Project\GraduateProject\GraduateProject\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+F:\DocumentD\Ki2Nam3\DOAN\Quizlet_Real\Project\GraduateProject\GraduateProject\bin\Debug\net6.0\Scrutor.dll
+F:\DocumentD\Ki2Nam3\DOAN\Quizlet_Real\Project\GraduateProject\GraduateProject\bin\Debug\net6.0\Swashbuckle.AspNetCore.Filters.dll
+F:\DocumentD\Ki2Nam3\DOAN\Quizlet_Real\Project\GraduateProject\GraduateProject\bin\Debug\net6.0\Swashbuckle.AspNetCore.Filters.Abstractions.dll

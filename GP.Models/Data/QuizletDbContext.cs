@@ -66,10 +66,9 @@ public partial class QuizletDbContext : DbContext
             entity.Property(e => e.HasWarning)
                 .HasDefaultValueSql("((0))")
                 .HasColumnName("has_warning");
-            entity.Property(e => e.Password)
-                .HasMaxLength(4000)
-                .IsUnicode(false)
-                .HasColumnName("password");
+            entity.Property(e => e.Password).HasColumnName("password");
+            entity.Property(e => e.PasswordSalt).HasColumnName("password_salt");
+            entity.Property(e => e.RefreshToken).HasColumnName("refresh_token");
             entity.Property(e => e.Role)
                 .HasMaxLength(50)
                 .IsUnicode(false)
@@ -80,6 +79,12 @@ public partial class QuizletDbContext : DbContext
                 .IsUnicode(false)
                 .HasDefaultValueSql("('AUTH')")
                 .HasColumnName("status");
+            entity.Property(e => e.TokenCreated)
+                .HasColumnType("datetime")
+                .HasColumnName("token_created");
+            entity.Property(e => e.TokenExpires)
+                .HasColumnType("datetime")
+                .HasColumnName("token_expires");
         });
 
         modelBuilder.Entity<AccountJoinClass>(entity =>
