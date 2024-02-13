@@ -1,4 +1,5 @@
-﻿using GP.Common.Models;
+﻿using GP.Common.DTO;
+using GP.Common.Models;
 using GP.DAL.IRepository;
 using GP.Models.Data;
 using System;
@@ -16,14 +17,14 @@ namespace GP.Business.IService
         /// </summary>
         /// <param name="searchBase"></param>
         /// <returns></returns>
-        public PaginatedResultBase<Credit> GetCreditByUser(SearchBase searchBase);
+        public PaginatedResultBase<CreditDTO> GetCreditByUser(SearchBase searchBase);
 
 
         /// <summary>
-        /// Lấy danh sách Credit tìm kiếm của tất cả user
+        /// Lấy danh sách Credit tìm kiếm của tất cả user, sắp xếp theo credit có nhiều ng học nhất
         /// </summary>
         /// <param name="searchBase"></param>
         /// <returns></returns>
-        public PaginatedResultBase<Credit> GetCreditByFilter(SearchBase searchBase);
+        public PaginatedResultBase<CreditDTO> GetCreditByFilter(SearchBase searchBase);
     }
 }

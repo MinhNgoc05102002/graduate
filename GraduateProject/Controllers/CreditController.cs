@@ -20,7 +20,7 @@ namespace GraduateProject.Controllers
             _creditService = creditService;
         }
 
-        [HttpPost, Authorize]
+        [HttpPost("get-list-credit-by-user"), Authorize]
         public Response GetListCreditByUser(SearchBase searchBase)
         {
             Response response = new Response();
@@ -34,6 +34,30 @@ namespace GraduateProject.Controllers
             try
             {
                 response.ReturnObj = _creditService.GetCreditByUser(searchBase);
+            }
+            catch (Exception ex)
+            {
+                response.SetError("Có lỗi xảy ra");
+                response.ExceptionInfo = ex;
+            }
+            response.Msg = "Success";
+            return response;
+        }
+
+        [HttpPost("get-list-credit-by-filter"), Authorize]
+        public Response GetListCreditByFilter(SearchBase searchBase)
+        {
+            Response response = new Response();
+
+            // Validate 
+            if (!ModelState.IsValid)
+            {
+                response.SetError(StatusCodes.Status400BadRequest, "Validate Error");
+                return response;
+            }
+            try
+            {
+                response.ReturnObj = _creditService.GetCreditByFilter(searchBase);
             }
             catch (Exception ex)
             {

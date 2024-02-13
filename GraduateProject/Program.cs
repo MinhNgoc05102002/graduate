@@ -16,6 +16,18 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        policy =>
+        {
+            policy.WithOrigins("http://example.com",
+                                "http://localhost:5173").AllowAnyOrigin()
+                                                         .AllowAnyMethod()
+                                                         .AllowAnyHeader();
+    });
+});
+
 builder.Services.AddControllers(
     //options =>
     //{
@@ -87,6 +99,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors();
 
 app.UseAuthentication();
 

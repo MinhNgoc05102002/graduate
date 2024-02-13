@@ -51,20 +51,23 @@ namespace GP.Business.Service
             account = _accountRepository.GetByUsername(accountDTO.Username);
             if (account != null)
             {
-                message = "Username này đã được tài khoản khác sử dụng";
+                message = "Tên tài khoản này đã được tài khoản khác sử dụng";
                 return true;
             }
 
             return false;
         }
 
-        public string CreateToken(string username)
+        public AccountDTO CreateToken(string username)
         {
             Account account = _accountRepository.GetByUsernameOrEmail(username);
+            AccountDTO accountDTO = _mapper.MapAccountToDTO(account);
 
-            // TODO: create token 
             string token = _authHelper.CreateToken(account);
-            return token;
+
+            accountDTO.Token = token;
+
+            return accountDTO;
         }
 
         // Giống với bên AuthHelper.cs

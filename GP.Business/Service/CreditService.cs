@@ -1,4 +1,5 @@
 ﻿using GP.Business.IService;
+using GP.Common.DTO;
 using GP.Common.Helpers;
 using GP.Common.Models;
 using GP.DAL.IRepository;
@@ -23,16 +24,16 @@ namespace GP.Business.Service
             this.authHelper = authHelper;
         }
 
-        public PaginatedResultBase<Credit> GetCreditByFilter(SearchBase searchBase)
+        public PaginatedResultBase<CreditDTO> GetCreditByFilter(SearchBase searchBase)
         {
             var result = creditRepository.GetListCreditByFilter(searchBase);
             return result;
         }
 
-        public PaginatedResultBase<Credit> GetCreditByUser(SearchBase searchBase)
+        public PaginatedResultBase<CreditDTO> GetCreditByUser(SearchBase searchBase)
         {
             string currentUsername = authHelper.GetCurrentUsername();
-            var result = creditRepository.GetListCreditByFilter(searchBase, currentUsername);
+            var result = creditRepository.GetListCreditByUser(searchBase, currentUsername);
             return result;
         }
 

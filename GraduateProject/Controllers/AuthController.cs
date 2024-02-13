@@ -69,10 +69,12 @@ namespace GraduateProject.Controllers
                     return response;
                 }
 
-                string token = _accountService.CreateToken(account.LoginName);
+                //string token = _accountService.CreateToken(account.LoginName);
+                AccountDTO accountDTO = _accountService.CreateToken(account.LoginName);
                 _accountService.GenAndSetRefreshToken(Response, account.LoginName);
 
-                response.ReturnObj = token;
+                //response.ReturnObj = token;
+                response.ReturnObj = accountDTO;
             }
             catch (Exception ex)
             {
@@ -100,10 +102,12 @@ namespace GraduateProject.Controllers
 
                 string curentUsername = _accountService.GetCurrentUsername();
 
-                string token = _accountService.CreateToken(curentUsername);
+                AccountDTO accountDTO = _accountService.CreateToken(curentUsername);
+                //string token = _accountService.CreateToken(curentUsername);
                 _accountService.GenAndSetRefreshToken(Response);
 
-                response.ReturnObj = token;
+                //response.ReturnObj = token;
+                response.ReturnObj = accountDTO;
             }
             catch (Exception ex)
             {

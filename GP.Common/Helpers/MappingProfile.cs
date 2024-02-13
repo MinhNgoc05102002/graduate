@@ -18,7 +18,7 @@ namespace GP.Common.Helpers
             {
                 // example
                 cfg.CreateMap<Flashcard, FlashcardDTO>().ReverseMap();
-                //cfg.CreateMap<Account, AccountDTO>(); //.ForMember(account => account.CreatedAt, act => act.MapFrom(dto => dto.CreatedAt)).ReverseMap();
+                cfg.CreateMap<Account, AccountDTO>(); //.ForMember(account => account.CreatedAt, act => act.MapFrom(dto => dto.CreatedAt)).ReverseMap();
             });
 
             _mapper = config.CreateMapper();
@@ -34,15 +34,15 @@ namespace GP.Common.Helpers
         {
             return _mapper.Map<Flashcard>(flashcardDTO);
         }
-        //public AccountDTO MapAccountToDTO(Account account)
-        //{
-        //    return _mapper.Map<AccountDTO>(account);
-        //}
-        //public Account MapDTOToAccount(AccountDTO accountDTO)
-        //{
-        //    return _mapper.Map<Account>(accountDTO);
-        //}
-        
+        public AccountDTO MapAccountToDTO(Account account)
+        {
+            return _mapper.Map<AccountDTO>(account);
+        }
+        public Account MapDTOToAccount(AccountDTO accountDTO)
+        {
+            return _mapper.Map<Account>(accountDTO);
+        }
+
 
     }
 }
