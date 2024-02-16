@@ -93,8 +93,8 @@ namespace GP.DAL.Repository
                                                acc.Avatar,
                                                acc.CreatedAt,
                                                acc.CountCredit,
-                                               acc2.CountClass,
-                                               acc.numLearn + acc2.numJoin
+                                               acc2 != null ? acc2.CountClass : 0,
+                                               acc.numLearn + (acc2 != null ? acc2.numJoin : 0)
                                            )).OrderByDescending(x => x.Mark).ToList();
 
             // Phân trang

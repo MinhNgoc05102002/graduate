@@ -221,5 +221,12 @@ namespace GP.Business.Service
             var result = _accountRepository.GetNotiByUser(searchBase, currentUsername);
             return result;
         }
+
+        public AccountDTO GetAccountByUsername(string username)
+        {
+            Account account = _accountRepository.GetByUsername(username);
+            AccountDTO accountDTO = _mapper.MapAccountToDTO(account);
+            return accountDTO;
+        }
     }
 }

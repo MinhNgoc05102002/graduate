@@ -41,6 +41,13 @@ namespace GP.Business.IService
         /// <returns></returns>
         public PaginatedResultBase<AccountDTO> GetCreditByFilter(SearchBase searchBase);
         public PaginatedResultBase<Notification> GetNotiByUser(SearchBase searchBase);
+
+        /// <summary>
+        /// Lấy chi tiết tài khoản khi có username
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        public AccountDTO GetAccountByUsername(string username);
         #endregion
     }
 }

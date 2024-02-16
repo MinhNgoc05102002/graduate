@@ -65,7 +65,29 @@ namespace GraduateProject.Controllers
             response.Msg = "Success";
             return response;
         }
-    
-        //public Response 
+
+        [HttpPost("get-account-by-username"), Authorize]
+        public Response GetAccountByUsername([FromBody] string username)
+        {
+            Response response = new Response();
+
+            // Validate 
+            if (!ModelState.IsValid)
+            {
+                response.SetError(StatusCodes.Status400BadRequest, "Validate Error");
+                return response;
+            }
+            try
+            {
+                response.ReturnObj = _accountService.GetAccountByUsername(username);
+            }
+            catch (Exception ex)
+            {
+                response.SetError("Có lỗi xảy ra");
+                response.ExceptionInfo = ex;
+            }
+            response.Msg = "Success";
+            return response;
+        }
     }
 }

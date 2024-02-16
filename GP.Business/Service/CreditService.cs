@@ -32,7 +32,7 @@ namespace GP.Business.Service
 
         public PaginatedResultBase<CreditDTO> GetCreditByUser(SearchBase searchBase)
         {
-            string currentUsername = string.Empty;
+            string currentUsername = searchBase.Username;
             if (searchBase.Username == string.Empty || searchBase.Username == null){
                 currentUsername = authHelper.GetCurrentUsername();
             }
