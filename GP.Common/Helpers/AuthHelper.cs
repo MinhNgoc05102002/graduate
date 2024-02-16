@@ -1,17 +1,10 @@
-﻿using GP.Common.DTO;
-using GP.Models.Data;
+﻿using GP.Models.Data;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GP.Common.Helpers
 {
@@ -49,9 +42,17 @@ namespace GP.Common.Helpers
         {
             List<Claim> claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, account.Username),
-                new Claim(ClaimTypes.Email, account.Email),
-                new Claim(ClaimTypes.Role, account.Role)
+                //new Claim(ClaimTypes.Name, account.Username),
+                //new Claim(ClaimTypes.Email, account.Email),
+                //new Claim(ClaimTypes.Role, account.Role)
+                new Claim("username", account.Username),
+                new Claim("email", account.Email),
+                new Claim("role", account.Role),
+                new Claim("avatar", account.Avatar),
+                new Claim("role", account.Role),
+                new Claim("status", account.Status),
+                new Claim("createdAt", account.Status),
+                new Claim("createdAt", account.Status),
             };
 
             var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(
@@ -68,13 +69,14 @@ namespace GP.Common.Helpers
 
             return jwt;
         }
-    
+
         public string GetCurrentUsername()
         {
             var username = string.Empty;
             if (_httpContextAccessor.HttpContext != null)
             {
-                username = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Name);
+                //username = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Name);
+                username = _httpContextAccessor.HttpContext.User.FindFirstValue("username");
             }
             return username;
         }

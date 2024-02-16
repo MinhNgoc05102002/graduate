@@ -7,6 +7,7 @@ using GP.Models.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
@@ -25,9 +26,8 @@ builder.Services.AddCors(options =>
                                 "http://localhost:5173").AllowAnyOrigin()
                                                          .AllowAnyMethod()
                                                          .AllowAnyHeader();
-    });
+        });
 });
-
 builder.Services.AddControllers(
     //options =>
     //{

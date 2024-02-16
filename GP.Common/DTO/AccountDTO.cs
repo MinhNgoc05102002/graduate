@@ -12,6 +12,21 @@ namespace GP.Common.DTO
     /// </summary>
     public class AccountDTO
     {
+        public AccountDTO()
+        {
+        }
+
+        public AccountDTO(string username, string email, string? avatar, DateTime? createdAt, int? countCredit, int? countClass, int? mark)
+        {
+            Username = username;
+            Email = email;
+            Avatar = avatar;
+            CreatedAt = createdAt;
+            CountCredit = countCredit;
+            CountClass = countClass;
+            Mark = mark;
+        }
+
         public string Username { get; set; } = null!;
 
         public string Email { get; set; } = null!;
@@ -32,5 +47,12 @@ namespace GP.Common.DTO
 
         public string? PasswordText { get; set; }
 
+        // add thêm field để show dashboard 
+        public int? CountCredit { get; set; }
+
+        public int? CountClass { get; set; }
+
+        // Điểm để đánh giá Tác giả hàng đầu
+        public int? Mark { get; set; }
     }
 }

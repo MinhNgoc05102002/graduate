@@ -5,9 +5,11 @@ using GP.Common.DTO;
 using GP.Common.Helpers;
 using GP.Common.Models;
 using GP.DAL.IRepository;
+using GP.DAL.Repository;
 using GP.Models.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
+using Microsoft.Extensions.Configuration.UserSecrets;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +35,7 @@ namespace GP.Business.Service
             _httpContextAccessor = httpContextAccessor;
         }
 
+        #region Auth
         /// <summary>
         /// Kiểm tra thông tin đăng ký đã tồn tại chưa
         /// </summary>
@@ -67,6 +70,27 @@ namespace GP.Business.Service
 
             accountDTO.Token = token;
 
+
+            // Generate and set refresh token (như hàm GenAndSetRefreshToken bên dưới nhưng ko set vào cookies)
+            var refreshToken = new RefreshToken
+            {
+                Token = Convert.ToBase64String(RandomNumberGenerator.GetBytes(64)),
+                Expires = DateTime.Now.AddDays(7),
+                Created = DateTime.Now
+            };
+
+            // cập nhật thông tin user 
+            if (account != null)
+            {
+                account.RefreshToken = refreshToken.Token;
+                account.TokenCreated = refreshToken.Created;
+                account.TokenExpires = refreshToken.Expires;
+
+                _accountRepository.UpdateAccount(account);
+            }
+
+            accountDTO.RefreshToken = refreshToken.Token;
+
             return accountDTO;
         }
 
@@ -76,7 +100,8 @@ namespace GP.Business.Service
             var username = string.Empty;
             if (_httpContextAccessor.HttpContext != null)
             {
-                username = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Name);
+                //username = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Name);
+                username = _httpContextAccessor.HttpContext.User.FindFirstValue("username");
             }
             return username;
         }
@@ -102,13 +127,13 @@ namespace GP.Business.Service
                 Created = DateTime.Now
             };
 
-            var cookieOptions = new CookieOptions
-            {
-                HttpOnly = true,
-                Expires = refreshToken.Expires
-            };
+            //var cookieOptions = new CookieOptions
+            //{
+            //    HttpOnly = true,
+            //    Expires = refreshToken.Expires
+            //};
 
-            response.Cookies.Append("refreshToken", refreshToken.Token, cookieOptions);
+            //response.Cookies.Append("refreshToken", refreshToken.Token, cookieOptions);
             
             Account account;
             // trường hợp đăng nhập
@@ -170,17 +195,31 @@ namespace GP.Business.Service
 
             if (account == null)
             {
-                message = "Tài khoản không tồn tại";
+                message = "Tài khoản này không tồn tại";
                 return false;
             }
 
             if (!AuthHelper.VerifyPasswordHash(password, account.Password, account.PasswordSalt))
             {
-                message = "Sai mật khẩu";
+                message = "Thông tin đăng nhập không đúng, vui lòng thử lại";
                 return false;
             }
             message = "Thông tin đăng nhập đúng";
             return true;
+        }
+        #endregion
+
+        public PaginatedResultBase<AccountDTO> GetCreditByFilter(SearchBase searchBase)
+        {
+            var result = _accountRepository.GetListAccountByFilter(searchBase);
+            return result;
+        }
+
+        public PaginatedResultBase<Notification> GetNotiByUser(SearchBase searchBase)
+        {
+            string currentUsername = _authHelper.GetCurrentUsername();
+            var result = _accountRepository.GetNotiByUser(searchBase, currentUsername);
+            return result;
         }
     }
 }

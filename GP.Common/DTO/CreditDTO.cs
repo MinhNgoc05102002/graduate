@@ -9,9 +9,10 @@ namespace GP.Common.DTO
 {
     public class CreditDTO
     {
-        public CreditDTO(string creditId, string? name, string? createdBy, int? countFlashcard, int? countLearnCal, string? avatar)
+        public CreditDTO(string creditId, DateTime? createdAt, string? name, string? createdBy, int? countFlashcard, int? countLearnCal, string? avatar)
         {
             CreditId = creditId;
+            CreatedAt = createdAt;
             Name = name;
             CreatedBy = createdBy;
             CountFlashcard = countFlashcard;

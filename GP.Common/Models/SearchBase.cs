@@ -10,6 +10,8 @@ namespace GP.Common.Models
     {
         public int PageSize { get; set; } = 10;
         public int PageIndex { get; set; }
-        public string SearchText { get; set; }
+        public string SearchText { get; set; } = String.Empty;
+
+        public string? Username { get; set; }
     }
 }

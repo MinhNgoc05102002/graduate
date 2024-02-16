@@ -19,6 +19,8 @@ namespace GP.Common.Helpers
                 // example
                 cfg.CreateMap<Flashcard, FlashcardDTO>().ReverseMap();
                 cfg.CreateMap<Account, AccountDTO>(); //.ForMember(account => account.CreatedAt, act => act.MapFrom(dto => dto.CreatedAt)).ReverseMap();
+                cfg.CreateMap<Notification, NotificationDTO>().ReverseMap();
+
             });
 
             _mapper = config.CreateMapper();
@@ -42,7 +44,14 @@ namespace GP.Common.Helpers
         {
             return _mapper.Map<Account>(accountDTO);
         }
-
+        public NotificationDTO MapNotiToDTO(Notification notification)
+        {
+            return _mapper.Map<NotificationDTO>(notification);
+        }
+        public Notification MapDTOToNoti(NotificationDTO notificationDTO)
+        {
+            return _mapper.Map<Notification>(notificationDTO);
+        }
 
     }
 }

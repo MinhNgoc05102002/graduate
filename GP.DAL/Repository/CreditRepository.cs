@@ -47,6 +47,7 @@ namespace GP.DAL.Repository
                                             return new CreditDTO
                                             (
                                                 credit.CreditId,
+                                                credit.CreatedAt,
                                                 credit.Name,
                                                 credit.CreatedBy,
                                                 credit.Flashcards.Count(),
@@ -103,6 +104,7 @@ namespace GP.DAL.Repository
                                             return new CreditDTO
                                             (
                                                 learn.CreditId,
+                                                learn.CreatedAt,
                                                 learn.Credit.Name,
                                                 learn.Credit.CreatedBy,
                                                 learn.Credit.Flashcards.Count(),
