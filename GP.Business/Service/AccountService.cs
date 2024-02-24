@@ -207,6 +207,24 @@ namespace GP.Business.Service
             message = "Thông tin đăng nhập đúng";
             return true;
         }
+
+        public void ChangePassword(AccountLogin accountDTO)
+        {
+            Account account = _accountRepository.GetByUsernameOrEmail(accountDTO.LoginName);
+
+            
+
+            // cập nhật thông tin user 
+            if (account != null)
+            {
+                AuthHelper.CreatePassHash(accountDTO.Password, out byte[] passwordHash, out byte[] passwordSalt);
+                account.Password = passwordHash;
+                account.PasswordSalt = passwordSalt;
+
+                _accountRepository.UpdateAccount(account);
+            }
+
+        }
         #endregion
 
         public PaginatedResultBase<AccountDTO> GetCreditByFilter(SearchBase searchBase)
@@ -228,5 +246,7 @@ namespace GP.Business.Service
             AccountDTO accountDTO = _mapper.MapAccountToDTO(account);
             return accountDTO;
         }
+
+
     }
 }

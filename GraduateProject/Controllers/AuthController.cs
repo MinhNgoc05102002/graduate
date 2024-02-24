@@ -1,6 +1,7 @@
 ﻿using GP.Business.IService;
 using GP.Common.DTO;
 using GP.Common.Helpers;
+using GP.Models.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -44,7 +45,7 @@ namespace GraduateProject.Controllers
             } catch (Exception ex)
             {
                 response.SetError("Có lỗi xảy ra");
-                response.ExceptionInfo = ex;
+                response.ExceptionInfo = ex.ToString();
             }
             response.Msg = "Register sucess";
             return response;
@@ -75,13 +76,14 @@ namespace GraduateProject.Controllers
 
                 //response.ReturnObj = token;
                 response.ReturnObj = accountDTO;
+                response.Msg = "Login sucess";
             }
             catch (Exception ex)
             {
                 response.SetError("Có lỗi xảy ra");
-                response.ExceptionInfo = ex;
+                response.ExceptionInfo = ex.ToString();
             }
-            response.Msg = "Login sucess";
+            
             return response;
         }
 
@@ -117,11 +119,52 @@ namespace GraduateProject.Controllers
             catch (Exception ex)
             {
                 response.SetError("Có lỗi xảy ra");
-                response.ExceptionInfo = ex;
+                response.ExceptionInfo = ex.ToString();
             }
             response.Msg = "Refresh token sucess";
             return response;
         }
 
+
+        // Tạm để fix lỗi mất pass trong db
+        [HttpPost("change-password")]
+        public Response ChangePassword(AccountLogin account)
+        {
+            Response response = new Response();
+
+            // Validate 
+            if (!ModelState.IsValid)
+            {
+                response.SetError(StatusCodes.Status422UnprocessableEntity, "Validate Error");
+                return response;
+            }
+
+            try
+            {
+                // Nếu username hoặc email đã tồn tại
+                //if (!_accountService.CheckUserExist(account, out string message))
+                //{
+                //    response.SetError("sai thông tin");
+                //    return response;
+                //}
+
+                // Nếu thông tin đăng nhập ko đúng
+                //if (!_accountService.VerifyLoginInfo(account.LoginName, account.Password, out string message))
+                //{
+                //    response.SetError(message);
+                //    return response;
+                //}
+
+                // đăng kí: hash pass, tạo user mới ...
+                _accountService.ChangePassword(account);
+            }
+            catch (Exception ex)
+            {
+                response.SetError("Có lỗi xảy ra");
+                response.ExceptionInfo = ex.ToString();
+            }
+            response.Msg = "Changepass sucess";
+            return response;
+        }
     }
 }

@@ -43,7 +43,7 @@ namespace GP.Common.Helpers
         /// <summary>
         /// object lỗi
         /// </summary>
-        public object ExceptionInfo { get; set; }
+        public string ExceptionInfo { get; set; }
 
         #endregion
 

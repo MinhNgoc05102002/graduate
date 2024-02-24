@@ -26,5 +26,6 @@ namespace GP.Business.IService
         /// <param name="searchBase"></param>
         /// <returns></returns>
         public PaginatedResultBase<CreditDTO> GetCreditByFilter(SearchBase searchBase);
+        public CreditDTO GetCreditById(string creditId);
     }
 }

@@ -50,11 +50,17 @@ builder.Services.AddDbContext<QuizletDbContext>(options =>
 // Add service
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<ICreditService, CreditService>();
+builder.Services.AddScoped<IFolderService, FolderService>();
+builder.Services.AddScoped<IClassService, ClassService>();
+builder.Services.AddScoped<IFlashcardService, FlashcardService>();
 
 
 // Add repository 
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 builder.Services.AddScoped<ICreditRepository, CreditRepository>();
+builder.Services.AddScoped<IFolderRepository, FolderRepository>();
+builder.Services.AddScoped<IClassRepository, ClassRepository>();
+builder.Services.AddScoped<IFlashcardRepository, FlashcardRepository>();
 
 
 // Add healper

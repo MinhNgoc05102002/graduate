@@ -36,7 +36,7 @@ namespace GraduateProject.Controllers
             catch (Exception ex)
             {
                 response.SetError("Có lỗi xảy ra");
-                response.ExceptionInfo = ex;
+                response.ExceptionInfo = ex.ToString();
             }
             response.Msg = "Sucess";
             return response;
@@ -60,7 +60,7 @@ namespace GraduateProject.Controllers
             catch (Exception ex)
             {
                 response.SetError("Có lỗi xảy ra");
-                response.ExceptionInfo = ex;
+                response.ExceptionInfo = ex.ToString();
             }
             response.Msg = "Success";
             return response;
@@ -84,7 +84,7 @@ namespace GraduateProject.Controllers
             catch (Exception ex)
             {
                 response.SetError("Có lỗi xảy ra");
-                response.ExceptionInfo = ex;
+                response.ExceptionInfo = ex.ToString();
             }
             response.Msg = "Success";
             return response;

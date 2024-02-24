@@ -26,5 +26,7 @@ namespace GP.DAL.IRepository
         /// <param name="searchBase"></param>
         /// <returns></returns>
         public PaginatedResultBase<CreditDTO> GetListCreditByUser(SearchBase searchBase, string username = "");
+
+        public Credit GetCreditById(string creditId);
     }
 }

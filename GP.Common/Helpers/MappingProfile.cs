@@ -20,6 +20,7 @@ namespace GP.Common.Helpers
                 cfg.CreateMap<Flashcard, FlashcardDTO>().ReverseMap();
                 cfg.CreateMap<Account, AccountDTO>(); //.ForMember(account => account.CreatedAt, act => act.MapFrom(dto => dto.CreatedAt)).ReverseMap();
                 cfg.CreateMap<Notification, NotificationDTO>().ReverseMap();
+                cfg.CreateMap<Credit, CreditDTO>().ReverseMap();
 
             });
 
@@ -51,6 +52,21 @@ namespace GP.Common.Helpers
         public Notification MapDTOToNoti(NotificationDTO notificationDTO)
         {
             return _mapper.Map<Notification>(notificationDTO);
+        }
+        public CreditDTO MapCreditToDTO(Credit credit)
+        {
+            return _mapper.Map<CreditDTO>(credit);
+        }
+        public Credit MapDTOToCredit(CreditDTO creditDTO)
+        {
+            return _mapper.Map<Credit>(creditDTO);
+        }
+
+        // Map List
+
+        public List<FlashcardDTO> MapFlashcardsToDTOs(List<Flashcard> flashcards)
+        {
+            return _mapper.Map<List<FlashcardDTO>>(flashcards);
         }
 
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GP.Models.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,5 +24,7 @@ namespace GP.Common.DTO
         public bool? IsDeleted { get; set; }
 
         public string? CreditId { get; set; }
+
+        public ICollection<Learn> Learns { get; set; } = new List<Learn>();
     }
 }

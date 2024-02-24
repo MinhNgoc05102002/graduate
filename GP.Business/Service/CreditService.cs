@@ -16,18 +16,33 @@ namespace GP.Business.Service
     {
 
         private readonly ICreditRepository creditRepository;
+        private readonly IAccountRepository accountRepository;
         private readonly AuthHelper authHelper;
+        private readonly MappingProfile _mapper;
 
-        public CreditService(ICreditRepository creditRepository, AuthHelper authHelper)
+        public CreditService(ICreditRepository creditRepository, AuthHelper authHelper, MappingProfile mapper, IAccountRepository accountRepository)
         {
             this.creditRepository = creditRepository;
             this.authHelper = authHelper;
+            _mapper = mapper;
+            this.accountRepository = accountRepository;
         }
 
         public PaginatedResultBase<CreditDTO> GetCreditByFilter(SearchBase searchBase)
         {
             var result = creditRepository.GetListCreditByFilter(searchBase);
             return result;
+        }
+
+        public CreditDTO GetCreditById(string creditId)
+        {
+            Credit credit = creditRepository.GetCreditById(creditId);
+            CreditDTO creditDTO = _mapper.MapCreditToDTO(credit);
+
+            Account account = accountRepository.GetByUsername(credit.CreatedBy);
+            creditDTO.Avatar = account.Avatar;
+
+            return creditDTO;
         }
 
         public PaginatedResultBase<CreditDTO> GetCreditByUser(SearchBase searchBase)

@@ -30,6 +30,7 @@ namespace GP.Business.IService
 
         public bool CheckValidRefreshToken(string refreshToken, out string message);
 
+        public void ChangePassword(AccountLogin accountDTO);
         #endregion
 
         #region read data

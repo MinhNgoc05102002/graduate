@@ -129,5 +129,14 @@ namespace GP.DAL.Repository
 
             return result;
         }
+
+        public Credit GetCreditById(string creditId)
+        {
+            Credit credit = _dbContext.Credits.FirstOrDefault(c => c.CreditId == creditId && c.IsDeleted == false);
+
+            return credit;
+        }
+
+
     }
 }
