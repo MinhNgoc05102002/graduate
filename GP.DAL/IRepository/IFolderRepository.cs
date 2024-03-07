@@ -1,5 +1,6 @@
 ﻿using GP.Common.DTO;
 using GP.Common.Models;
+using GP.Models.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,13 @@ namespace GP.DAL.IRepository
         /// </summary>
         /// <param name="searchBase"></param>
         /// <returns></returns>
-        public PaginatedResultBase<FolderDTO> GetListCreditByUser(SearchBase searchBase);
+        public PaginatedResultBase<FolderDTO> GetListFolderByUser(SearchBase searchBase);
+
+        /// <summary>
+        /// Lấy Folder theo folderId
+        /// </summary>
+        /// <param name="folderId"></param>
+        /// <returns></returns>
+        public FolderDTO GetFolderById(SearchBase searchBase);
     }
 }

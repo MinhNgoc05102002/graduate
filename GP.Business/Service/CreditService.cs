@@ -39,8 +39,14 @@ namespace GP.Business.Service
             Credit credit = creditRepository.GetCreditById(creditId);
             CreditDTO creditDTO = _mapper.MapCreditToDTO(credit);
 
-            Account account = accountRepository.GetByUsername(credit.CreatedBy);
-            creditDTO.Avatar = account.Avatar;
+            if (credit != null)
+            {
+                Account account = accountRepository.GetByUsername(credit.CreatedBy);
+                creditDTO.Avatar = account.Avatar;
+
+                string currentUsername = authHelper.GetCurrentUsername();
+                creditDTO.IsLearned = creditRepository.IsUserLearnedCredit(creditId, currentUsername);
+            }
 
             return creditDTO;
         }
@@ -55,6 +61,11 @@ namespace GP.Business.Service
             return result;
         }
 
+        //public PaginatedResultBase<CreditDTO> GetListCreditByFolder(string folderId)
+        //{
+        //    var result = creditRepository.GetListCreditByFolder(folderId);
+        //    return result;
+        //}
 
     }
 }

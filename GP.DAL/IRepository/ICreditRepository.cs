@@ -27,6 +27,21 @@ namespace GP.DAL.IRepository
         /// <returns></returns>
         public PaginatedResultBase<CreditDTO> GetListCreditByUser(SearchBase searchBase, string username = "");
 
+        /// <summary>
+        /// Lấy danh sách Credit của một học phần
+        /// </summary>
+        /// <param name="searchBase"></param>
+        /// <returns></returns>
+        //public List<CreditDTO> GetListCreditByFolder(string folderId);
+
         public Credit GetCreditById(string creditId);
+
+        /// <summary>
+        /// Kiểm tra xem user này đã học học phần này chưa 
+        /// </summary>
+        /// <param name="creditId"></param>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        public Boolean IsUserLearnedCredit(string creditId, string username);
     }
 }

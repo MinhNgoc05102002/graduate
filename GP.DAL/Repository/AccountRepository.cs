@@ -139,5 +139,10 @@ namespace GP.DAL.Repository
 
             return result;
         }
+
+        public List<Account> GetAllUser()
+        {
+            return _dbContext.Accounts.ToList();
+        }
     }
 }

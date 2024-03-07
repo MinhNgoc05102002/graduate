@@ -13,8 +13,14 @@ namespace GP.Business.IService
         /// <summary>
         /// Lấy danh sách folder theo username
         /// </summary>
-        /// <param name="username"></param>
         /// <returns></returns>
         public PaginatedResultBase<FolderDTO> GetFolderByUsername(SearchBase searchBase);
+
+        /// <summary>
+        /// Lấy danh sách folder theo folderId
+        /// </summary>
+        /// <param name="folderId"></param>
+        /// <returns></returns>
+        public FolderDTO GetFolderById(SearchBase searchBase);
     }
 }

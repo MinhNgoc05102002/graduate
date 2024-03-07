@@ -130,6 +130,38 @@ namespace GP.DAL.Repository
             return result;
         }
 
+        //public List<CreditDTO> GetListCreditByFolder(string folderId)
+        //{
+        //    PaginatedResultBase<CreditDTO> result = new PaginatedResultBase<CreditDTO>();
+
+        //    List<CreditDTO> listCredit = _dbContext.Credits
+        //                                .Include(x => x.Folders)
+        //                                .Include(x => x.Flashcards)
+
+        //                                // Điều kiện tìm kiếm
+        //                                .Where(x =>
+        //                                    x.Folders.Any(f => f.FolderId == folderId) && 
+        //                                    x.IsDeleted == false
+        //                                ).ToList()
+
+        //                                // Join lấy avt
+        //                                .Join(_dbContext.Accounts.ToList(), c => c.CreatedBy, a => a.Username, (credit, account) =>
+        //                                {
+        //                                    return new CreditDTO
+        //                                    (
+        //                                        credit.CreditId,
+        //                                        credit.CreatedAt,
+        //                                        credit.Name,
+        //                                        credit.CreatedBy,
+        //                                        credit.Flashcards.Count(),
+        //                                        0,
+        //                                        account.Avatar
+        //                                    );
+        //                                }).ToList();
+
+        //    return listCredit;
+        //}
+
         public Credit GetCreditById(string creditId)
         {
             Credit credit = _dbContext.Credits.FirstOrDefault(c => c.CreditId == creditId && c.IsDeleted == false);
@@ -137,6 +169,9 @@ namespace GP.DAL.Repository
             return credit;
         }
 
-
+        public Boolean IsUserLearnedCredit(string creditId, string username)
+        {
+            return _dbContext.AccountLearnCredits.Any(learn =>  learn.Username == username && learn.CreditId == creditId);
+        }
     }
 }

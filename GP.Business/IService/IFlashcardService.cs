@@ -10,6 +10,7 @@ namespace GP.Business.IService
 {
     public interface IFlashcardService
     {
-        public List<FlashcardDTO> GetFlashcardByCreditId(string creditId, string username);
+        public List<FlashcardDTO> GetFlashcardByCreditId(CreditReq creditReq);
+        //public List<LearnDTO> GetFlashcardByCreditId(CreditReq creditReq);
     }
 }

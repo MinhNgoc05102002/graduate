@@ -208,14 +208,18 @@ namespace GP.Business.Service
             return true;
         }
 
+        /// <summary>
+        /// Tạm để fix lỗi mất trường password
+        /// </summary>
+        /// <param name="accountDTO"></param>
         public void ChangePassword(AccountLogin accountDTO)
         {
-            Account account = _accountRepository.GetByUsernameOrEmail(accountDTO.LoginName);
+            //Account account = _accountRepository.GetByUsernameOrEmail(accountDTO.LoginName);
 
-            
+            List<Account> accounts = _accountRepository.GetAllUser();
 
-            // cập nhật thông tin user 
-            if (account != null)
+            // Cập nhật thông tin user
+            foreach(Account account  in accounts)
             {
                 AuthHelper.CreatePassHash(accountDTO.Password, out byte[] passwordHash, out byte[] passwordSalt);
                 account.Password = passwordHash;

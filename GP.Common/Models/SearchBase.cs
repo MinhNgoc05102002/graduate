@@ -13,5 +13,6 @@ namespace GP.Common.Models
         public string SearchText { get; set; } = String.Empty;
 
         public string? Username { get; set; }
+        public string? ContainerId { get; set; }
     }
 }

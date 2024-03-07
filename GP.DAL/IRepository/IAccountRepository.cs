@@ -28,5 +28,8 @@ namespace GP.DAL.IRepository
         /// <returns></returns>
         public PaginatedResultBase<AccountDTO> GetListAccountByFilter(SearchBase searchBase);
         public PaginatedResultBase<Notification> GetNotiByUser(SearchBase searchBase, string username);
+
+
+        public List<Account> GetAllUser();
     }
 }

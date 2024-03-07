@@ -1,4 +1,5 @@
-﻿using GP.Models.Data;
+﻿using GP.Common.DTO;
+using GP.Models.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,9 @@ namespace GP.DAL.IRepository
         /// <param name="creditId">Mã bộ thẻ</param>
         /// <param name="username">username truy vấn thẻ</param>
         /// <returns></returns>
-        public List<Flashcard> GetFlashcardByCreditId(string creditId, string username);
+        public List<Flashcard> GetFlashcardByCreditId(CreditReq creditReq);
+
+        //public List<Learn> GetFlashcardByCreditId(CreditReq creditReq);
+
     }
 }

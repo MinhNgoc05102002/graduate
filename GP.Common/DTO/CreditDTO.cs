@@ -9,6 +9,7 @@ namespace GP.Common.DTO
 {
     public class CreditDTO
     {
+        public CreditDTO() { }
         public CreditDTO(string creditId, DateTime? createdAt, string? name, string? createdBy, int? countFlashcard, int? countLearnCal, string? avatar)
         {
             CreditId = creditId;
@@ -20,7 +21,22 @@ namespace GP.Common.DTO
             Avatar = avatar;
         }
 
-        public CreditDTO(string creditId, string? name, string? description, DateTime? createdAt, string? createdBy, bool? isDeleted, int? countReport, int? countLearn, ICollection<AccountLearnCredit> accountLearnCredits, ICollection<Flashcard> flashcards, ICollection<Category> categories, ICollection<Class> classes, ICollection<Folder> folders, int? countFlashcard, int? countLearnCal)
+        public CreditDTO(
+            string creditId, 
+            string? name, 
+            string? description, 
+            DateTime? createdAt, 
+            string? createdBy, 
+            bool? isDeleted, 
+            int? countReport, 
+            int? countLearn, 
+            //ICollection<AccountLearnCredit> accountLearnCredits, 
+            //ICollection<Flashcard> flashcards, 
+            //ICollection<Category> categories, 
+            //ICollection<Class> classes, 
+            //ICollection<Folder> folders, 
+            int? countFlashcard, 
+            int? countLearnCal)
         {
             CreditId = creditId;
             Name = name;
@@ -30,11 +46,11 @@ namespace GP.Common.DTO
             IsDeleted = isDeleted;
             CountReport = countReport;
             CountLearn = countLearn;
-            AccountLearnCredits = accountLearnCredits;
-            Flashcards = flashcards;
-            Categories = categories;
-            Classes = classes;
-            Folders = folders;
+            //AccountLearnCredits = accountLearnCredits;
+            //Flashcards = flashcards;
+            //Categories = categories;
+            //Classes = classes;
+            //Folders = folders;
             CountFlashcard = countFlashcard;
             CountLearnCal = countLearnCal;
         }
@@ -55,19 +71,20 @@ namespace GP.Common.DTO
 
         public int? CountLearn { get; set; }
 
-        public ICollection<AccountLearnCredit> AccountLearnCredits { get; set; } = new List<AccountLearnCredit>();
+        //public ICollection<AccountLearnCredit> AccountLearnCredits { get; set; } = new List<AccountLearnCredit>();
 
-        public ICollection<Flashcard> Flashcards { get; set; } = new List<Flashcard>();
+        //public ICollection<Flashcard> Flashcards { get; set; } = new List<Flashcard>();
 
-        public ICollection<Category> Categories { get; set; } = new List<Category>();
+        //public ICollection<Category> Categories { get; set; } = new List<Category>();
 
-        public ICollection<Class> Classes { get; set; } = new List<Class>();
+        //public ICollection<Class> Classes { get; set; } = new List<Class>();
 
-        public ICollection<Folder> Folders { get; set; } = new List<Folder>();
+        //public ICollection<Folder> Folders { get; set; } = new List<Folder>();
 
         // add new
         public int? CountFlashcard { get; set; }
         public int? CountLearnCal { get; set; }
         public string? Avatar { get; set; }
+        public Boolean IsLearned { get; set; }
     }
 }

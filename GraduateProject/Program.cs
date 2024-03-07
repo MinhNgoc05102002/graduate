@@ -33,6 +33,8 @@ builder.Services.AddControllers(
     //{
     //    options.Filters.Add(typeof(CustomExceptionFilter));
     //}
+).AddNewtonsoftJson(options => 
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
 );
 
 

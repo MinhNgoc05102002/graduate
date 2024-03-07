@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GP.Models.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,8 +34,11 @@ namespace GP.Common.DTO
         public string? CreatedBy { get; set; }
 
         public bool? IsDeleted { get; set; }
+        public virtual ICollection<CreditDTO> Credits { get; set; }
 
         // thêm thông tin trả về 
         public int? CountCredit { get; set; }
+        public string? Avatar { get; set; }
+
     }
 }

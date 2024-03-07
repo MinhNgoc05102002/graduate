@@ -21,7 +21,9 @@ namespace GP.Common.Helpers
                 cfg.CreateMap<Account, AccountDTO>(); //.ForMember(account => account.CreatedAt, act => act.MapFrom(dto => dto.CreatedAt)).ReverseMap();
                 cfg.CreateMap<Notification, NotificationDTO>().ReverseMap();
                 cfg.CreateMap<Credit, CreditDTO>().ReverseMap();
-
+                cfg.CreateMap<Learn, LearnDTO>().ReverseMap();
+                cfg.CreateMap<Folder, FolderDTO>().ReverseMap();
+                //.ForMember(folder => folder.Flashcard, act => act.MapFrom(dto => dto.Flashcard)).ReverseMap();
             });
 
             _mapper = config.CreateMapper();
@@ -62,6 +64,24 @@ namespace GP.Common.Helpers
             return _mapper.Map<Credit>(creditDTO);
         }
 
+        public LearnDTO MapLearnToDTO(Learn learn)
+        {
+            return _mapper.Map<LearnDTO>(learn);
+        }
+        public Learn MapDTOToLearn(LearnDTO learnDTO)
+        {
+            return _mapper.Map<Learn>(learnDTO);
+        }
+
+        public FolderDTO MapFolderToDTO(Folder folder)
+        {
+            return _mapper.Map<FolderDTO>(folder);
+        }
+        public Folder MapDTOToFolder(FolderDTO folderDTO)
+        {
+            return _mapper.Map<Folder>(folderDTO);
+        }
+
         // Map List
 
         public List<FlashcardDTO> MapFlashcardsToDTOs(List<Flashcard> flashcards)
@@ -69,5 +89,13 @@ namespace GP.Common.Helpers
             return _mapper.Map<List<FlashcardDTO>>(flashcards);
         }
 
+        public List<LearnDTO> MapLearnsToDTOs(List<Learn> learns)
+        {
+            return _mapper.Map<List<LearnDTO>>(learns);
+        }
+        public List<Learn> MapDTOsToLearns(List<LearnDTO> learnDTOs)
+        {
+            return _mapper.Map<List<Learn>>(learnDTOs);
+        }
     }
 }

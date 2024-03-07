@@ -42,5 +42,29 @@ namespace GraduateProject.Controllers
             response.Msg = "Success";
             return response;
         }
+
+        [HttpPost("get-folder-by-id"), Authorize]
+        public Response GetFolderById(SearchBase searchBase)
+        {
+            Response response = new Response();
+
+            // Validate 
+            if (!ModelState.IsValid)
+            {
+                response.SetError(StatusCodes.Status400BadRequest, "Validate Error");
+                return response;
+            }
+            try
+            {
+                response.ReturnObj = _folderService.GetFolderById(searchBase);
+            }
+            catch (Exception ex)
+            {
+                response.SetError("Có lỗi xảy ra");
+                response.ExceptionInfo = ex.ToString();
+            }
+            response.Msg = "Success";
+            return response;
+        }
     }
 }

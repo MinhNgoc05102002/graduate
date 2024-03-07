@@ -1,12 +1,8 @@
 ﻿using GP.Business.IService;
 using GP.Common.DTO;
+using GP.Common.Helpers;
 using GP.Common.Models;
 using GP.DAL.IRepository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GP.Business.Service
 {
@@ -18,9 +14,14 @@ namespace GP.Business.Service
         {
             this.folderRepository = folderRepository;
         }
+
         public PaginatedResultBase<FolderDTO> GetFolderByUsername(SearchBase searchBase)
         {
-            return folderRepository.GetListCreditByUser(searchBase);
+            return folderRepository.GetListFolderByUser(searchBase);
+        }
+
+        public FolderDTO GetFolderById(SearchBase searchBase) {
+            return folderRepository.GetFolderById(searchBase);
         }
     }
 }

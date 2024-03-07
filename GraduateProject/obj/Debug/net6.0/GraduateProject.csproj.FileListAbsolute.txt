@@ -92,3 +92,7 @@ F:\DocumentD\Ki2Nam3\DOAN\Quizlet_Real\Project\GraduateProject\GraduateProject\b
 F:\DocumentD\Ki2Nam3\DOAN\Quizlet_Real\Project\GraduateProject\GraduateProject\bin\Debug\net6.0\Scrutor.dll
 F:\DocumentD\Ki2Nam3\DOAN\Quizlet_Real\Project\GraduateProject\GraduateProject\bin\Debug\net6.0\Swashbuckle.AspNetCore.Filters.dll
 F:\DocumentD\Ki2Nam3\DOAN\Quizlet_Real\Project\GraduateProject\GraduateProject\bin\Debug\net6.0\Swashbuckle.AspNetCore.Filters.Abstractions.dll
+F:\DocumentD\Ki2Nam3\DOAN\Quizlet_Real\Project\GraduateProject\GraduateProject\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
+F:\DocumentD\Ki2Nam3\DOAN\Quizlet_Real\Project\GraduateProject\GraduateProject\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+F:\DocumentD\Ki2Nam3\DOAN\Quizlet_Real\Project\GraduateProject\GraduateProject\bin\Debug\net6.0\Newtonsoft.Json.dll
+F:\DocumentD\Ki2Nam3\DOAN\Quizlet_Real\Project\GraduateProject\GraduateProject\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll

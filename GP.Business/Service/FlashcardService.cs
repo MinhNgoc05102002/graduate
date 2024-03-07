@@ -24,13 +24,23 @@ namespace GP.Business.Service
             _mapper = mapper;
         }
 
-        public List<FlashcardDTO> GetFlashcardByCreditId(string creditId, string username)
+        public List<FlashcardDTO> GetFlashcardByCreditId(CreditReq creditReq)
         {
-            List<Flashcard> flashcards = flashcardRepository.GetFlashcardByCreditId(creditId, username);
+            List<Flashcard> flashcards = flashcardRepository.GetFlashcardByCreditId(creditReq);
 
             List<FlashcardDTO> flashcardDTOs = _mapper.MapFlashcardsToDTOs(flashcards);
 
             return flashcardDTOs;
         }
+
+        //public List<LearnDTO> GetFlashcardByCreditId(CreditReq creditReq)
+        //{
+        //    //List<Flashcard> learns = flashcardRepository.GetFlashcardByCreditId(creditId, username);
+        //    List<Learn> learns = flashcardRepository.GetFlashcardByCreditId(creditReq);
+
+        //    List<LearnDTO> learnDTOs = _mapper.MapLearnsToDTOs(learns);
+
+        //    return learnDTOs;
+        //}
     }
 }

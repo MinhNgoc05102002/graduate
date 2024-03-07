@@ -25,6 +25,6 @@ namespace GP.Common.DTO
 
         public string? CreditId { get; set; }
 
-        public ICollection<Learn> Learns { get; set; } = new List<Learn>();
+        public ICollection<LearnDTO> Learns { get; set; } = new List<LearnDTO>();
     }
 }

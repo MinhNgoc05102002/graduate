@@ -51,9 +51,18 @@ namespace GraduateProject.Controllers
             return response;
         }
         
+
         [HttpPost("login")]
+        /// <summary>
+        /// new côment 
+        /// </summary>
+        /// <param name="account">tài khỏ</param>
+        /// <returns></returns>
         public Response Login(AccountLogin account)
         {
+            decimal x;
+            decimal.TryParse("", out x);
+
             Response response = new Response();
             // Validate 
             if (!ModelState.IsValid)
