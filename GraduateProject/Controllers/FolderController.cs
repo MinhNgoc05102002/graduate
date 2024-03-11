@@ -66,5 +66,29 @@ namespace GraduateProject.Controllers
             response.Msg = "Success";
             return response;
         }
+
+        [HttpPost("get-list-folder-by-class"), Authorize]
+        public Response GetListFolderByClass(SearchBase searchBase)
+        {
+            Response response = new Response();
+
+            // Validate 
+            if (!ModelState.IsValid)
+            {
+                response.SetError(StatusCodes.Status400BadRequest, "Validate Error");
+                return response;
+            }
+            try
+            {
+                response.ReturnObj = _folderService.GetListFolderByClass(searchBase);
+            }
+            catch (Exception ex)
+            {
+                response.SetError("Có lỗi xảy ra");
+                response.ExceptionInfo = ex.ToString();
+            }
+            response.Msg = "Success";
+            return response;
+        }
     }
 }

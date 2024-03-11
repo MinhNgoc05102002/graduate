@@ -251,6 +251,10 @@ namespace GP.Business.Service
             return accountDTO;
         }
 
-
+        public PaginatedResultBase<AccountDTO> GetAccountJoinClass(SearchBase searchBase)
+        {
+            var result = _accountRepository.GetAccountJoinClass(searchBase);
+            return result;
+        }
     }
 }

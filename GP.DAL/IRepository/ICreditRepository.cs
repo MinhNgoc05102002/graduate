@@ -28,11 +28,11 @@ namespace GP.DAL.IRepository
         public PaginatedResultBase<CreditDTO> GetListCreditByUser(SearchBase searchBase, string username = "");
 
         /// <summary>
-        /// Lấy danh sách Credit của một học phần
+        /// Lấy danh sách Credit của một lớp học
         /// </summary>
         /// <param name="searchBase"></param>
         /// <returns></returns>
-        //public List<CreditDTO> GetListCreditByFolder(string folderId);
+        public PaginatedResultBase<CreditDTO> GetListCreditByClass(SearchBase searchBase);
 
         public Credit GetCreditById(string creditId);
 

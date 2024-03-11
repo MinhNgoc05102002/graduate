@@ -130,37 +130,52 @@ namespace GP.DAL.Repository
             return result;
         }
 
-        //public List<CreditDTO> GetListCreditByFolder(string folderId)
-        //{
-        //    PaginatedResultBase<CreditDTO> result = new PaginatedResultBase<CreditDTO>();
+        public PaginatedResultBase<CreditDTO> GetListCreditByClass(SearchBase searchBase)
+        {
+            PaginatedResultBase<CreditDTO> result = new PaginatedResultBase<CreditDTO>();
 
-        //    List<CreditDTO> listCredit = _dbContext.Credits
-        //                                .Include(x => x.Folders)
-        //                                .Include(x => x.Flashcards)
+            List<CreditDTO> listCredit = _dbContext.Credits
+                                        .Include(x => x.Classes)
+                                        .Include(x => x.Flashcards)
 
-        //                                // Điều kiện tìm kiếm
-        //                                .Where(x =>
-        //                                    x.Folders.Any(f => f.FolderId == folderId) && 
-        //                                    x.IsDeleted == false
-        //                                ).ToList()
+                                        // Điều kiện tìm kiếm
+                                        .Where(x =>
+                                            x.Classes.Any(f => f.ClassId == searchBase.ContainerId) &&
+                                            (String.IsNullOrEmpty(searchBase.SearchText) || x.Name.ToLower().Contains(searchBase.SearchText.ToLower())) &&
+                                            x.IsDeleted == false
+                                        ).ToList()
 
-        //                                // Join lấy avt
-        //                                .Join(_dbContext.Accounts.ToList(), c => c.CreatedBy, a => a.Username, (credit, account) =>
-        //                                {
-        //                                    return new CreditDTO
-        //                                    (
-        //                                        credit.CreditId,
-        //                                        credit.CreatedAt,
-        //                                        credit.Name,
-        //                                        credit.CreatedBy,
-        //                                        credit.Flashcards.Count(),
-        //                                        0,
-        //                                        account.Avatar
-        //                                    );
-        //                                }).ToList();
+                                        // Join lấy avt
+                                        .Join(_dbContext.Accounts.ToList(), c => c.CreatedBy, a => a.Username, (credit, account) =>
+                                        {
+                                            return new CreditDTO
+                                            (
+                                                credit.CreditId,
+                                                credit.CreatedAt,
+                                                credit.Name,
+                                                credit.CreatedBy,
+                                                credit.Flashcards.Count(),
+                                                0,
+                                                account.Avatar
+                                            );
+                                        }).ToList();
 
-        //    return listCredit;
-        //}
+            // Phân trang
+            List<CreditDTO> listCreditPaging = listCredit.Skip((searchBase.PageIndex - 1) * searchBase.PageSize)
+                                                         .Take(searchBase.PageSize).ToList();
+
+            int totalItem = listCredit.Count();
+
+            int totalPage = (int)Math.Ceiling((double)totalItem / searchBase.PageSize);
+
+            if (searchBase.PageSize == 0) totalPage = 0;
+
+            result.PageIndex = searchBase.PageIndex;
+            result.TotalPage = totalPage;
+            result.ListResult = listCreditPaging;
+
+            return result;
+        }
 
         public Credit GetCreditById(string creditId)
         {

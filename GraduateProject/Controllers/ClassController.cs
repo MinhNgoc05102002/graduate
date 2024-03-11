@@ -1,4 +1,5 @@
 ﻿using GP.Business.IService;
+using GP.Business.Service;
 using GP.Common.Helpers;
 using GP.Common.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -32,6 +33,30 @@ namespace GraduateProject.Controllers
             try
             {
                 response.ReturnObj = _classService.GetClassByUsername(searchBase);
+            }
+            catch (Exception ex)
+            {
+                response.SetError("Có lỗi xảy ra");
+                response.ExceptionInfo = ex.ToString();
+            }
+            response.Msg = "Success";
+            return response;
+        }
+
+        [HttpPost("get-class-by-id"), Authorize]
+        public Response GetClassById([FromBody] string classId)
+        {
+            Response response = new Response();
+
+            // Validate 
+            if (!ModelState.IsValid)
+            {
+                response.SetError(StatusCodes.Status400BadRequest, "Validate Error");
+                return response;
+            }
+            try
+            {
+                response.ReturnObj = _classService.GetClassById(classId);
             }
             catch (Exception ex)
             {

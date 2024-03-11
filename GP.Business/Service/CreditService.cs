@@ -61,11 +61,11 @@ namespace GP.Business.Service
             return result;
         }
 
-        //public PaginatedResultBase<CreditDTO> GetListCreditByFolder(string folderId)
-        //{
-        //    var result = creditRepository.GetListCreditByFolder(folderId);
-        //    return result;
-        //}
+        public PaginatedResultBase<CreditDTO> GetListCreditByClass(SearchBase searchBase)
+        {
+            var result = creditRepository.GetListCreditByClass(searchBase);
+            return result;
+        }
 
     }
 }

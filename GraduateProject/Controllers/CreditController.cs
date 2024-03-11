@@ -92,28 +92,28 @@ namespace GraduateProject.Controllers
             return response;
         }
 
-        //[HttpPost("get-credit-by-folder"), Authorize]
-        //public Response GetCreditByFolder([FromBody] string folderId)
-        //{
-        //    Response response = new Response();
+        [HttpPost("get-list-credit-by-class"), Authorize]
+        public Response GetListCreditByClass(SearchBase searchBase)
+        {
+            Response response = new Response();
 
-        //    // Validate 
-        //    if (!ModelState.IsValid)
-        //    {
-        //        response.SetError(StatusCodes.Status400BadRequest, "Validate Error");
-        //        return response;
-        //    }
-        //    try
-        //    {
-        //        response.ReturnObj = _creditService.GetListCreditByFolder(folderId);
-        //        response.Msg = "Success";
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        response.SetError("Có lỗi xảy ra");
-        //        response.ExceptionInfo = ex.ToString();
-        //    }
-        //    return response;
-        //}
+            // Validate 
+            if (!ModelState.IsValid)
+            {
+                response.SetError(StatusCodes.Status400BadRequest, "Validate Error");
+                return response;
+            }
+            try
+            {
+                response.ReturnObj = _creditService.GetListCreditByClass(searchBase);
+                response.Msg = "Success";
+            }
+            catch (Exception ex)
+            {
+                response.SetError("Có lỗi xảy ra");
+                response.ExceptionInfo = ex.ToString();
+            }
+            return response;
+        }
     }
 }

@@ -31,5 +31,13 @@ namespace GP.DAL.IRepository
 
 
         public List<Account> GetAllUser();
+
+        /// <summary>
+        /// Lấy danh sách Account join class
+        /// Điểm = sum(num_learn_credit) + sum(num_join_class)
+        /// </summary>
+        /// <param name="searchBase"></param>
+        /// <returns></returns>
+        public PaginatedResultBase<AccountDTO> GetAccountJoinClass(SearchBase searchBase);
     }
 }

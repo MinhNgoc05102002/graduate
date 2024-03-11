@@ -50,5 +50,17 @@ namespace GP.Business.IService
         /// <returns></returns>
         public AccountDTO GetAccountByUsername(string username);
         #endregion
+
+        #region query to show data
+        /// <summary>
+        /// Lấy danh sách tài khoản join class
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        public PaginatedResultBase<AccountDTO> GetAccountJoinClass(SearchBase searchBase);
+
+
+
+        #endregion
     }
 }

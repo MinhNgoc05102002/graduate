@@ -23,5 +23,11 @@ namespace GP.Business.Service
         public FolderDTO GetFolderById(SearchBase searchBase) {
             return folderRepository.GetFolderById(searchBase);
         }
+
+        public PaginatedResultBase<FolderDTO> GetListFolderByClass(SearchBase searchBase)
+        {
+            return folderRepository.GetListFolderByClass(searchBase);
+        }
+
     }
 }

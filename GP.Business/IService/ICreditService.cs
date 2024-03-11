@@ -28,6 +28,6 @@ namespace GP.Business.IService
         public PaginatedResultBase<CreditDTO> GetCreditByFilter(SearchBase searchBase);
         public CreditDTO GetCreditById(string creditId);
 
-        //public PaginatedResultBase<CreditDTO> GetListCreditByFolder(string folderId);
+        public PaginatedResultBase<CreditDTO> GetListCreditByClass(SearchBase searchBase);
     }
 }

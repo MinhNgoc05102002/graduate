@@ -63,5 +63,10 @@ namespace GP.DAL.Repository
 
             return result;
         }
+
+        public Class GetClassById(string classId)
+        {
+            return _dbContext.Classes.FirstOrDefault(c => c.ClassId == classId && c.IsDeleted == false);
+        }
     }
 }

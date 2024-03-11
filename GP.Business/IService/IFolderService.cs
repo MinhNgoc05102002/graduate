@@ -22,5 +22,12 @@ namespace GP.Business.IService
         /// <param name="folderId"></param>
         /// <returns></returns>
         public FolderDTO GetFolderById(SearchBase searchBase);
+
+        /// <summary>
+        /// Lấy danh sách folder theo classId
+        /// </summary>
+        /// <param name="classId"></param>
+        /// <returns></returns>
+        public PaginatedResultBase<FolderDTO> GetListFolderByClass(SearchBase searchBase);
     }
 }

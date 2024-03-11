@@ -24,5 +24,12 @@ namespace GP.DAL.IRepository
         /// <param name="folderId"></param>
         /// <returns></returns>
         public FolderDTO GetFolderById(SearchBase searchBase);
+
+        /// <summary>
+        /// Lấy Folder theo classId
+        /// </summary>
+        /// <param name="folderId"></param>
+        /// <returns></returns>
+        public PaginatedResultBase<FolderDTO> GetListFolderByClass(SearchBase searchBase);
     }
 }

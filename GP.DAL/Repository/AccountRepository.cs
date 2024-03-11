@@ -1,4 +1,5 @@
 ﻿using GP.Common.DTO;
+using GP.Common.Helpers;
 using GP.Common.Models;
 using GP.DAL.IRepository;
 using GP.Models.Data;
@@ -14,9 +15,11 @@ namespace GP.DAL.Repository
     public class AccountRepository : IAccountRepository
     {
         private readonly QuizletDbContext _dbContext;
-        public AccountRepository(QuizletDbContext dbContext)
+        private readonly MappingProfile _mapper;
+        public AccountRepository(QuizletDbContext dbContext, MappingProfile mapper)
         {
             _dbContext = dbContext;
+            _mapper = mapper;
         }
         #region Auth
         public Account Create(Account account)
@@ -144,5 +147,42 @@ namespace GP.DAL.Repository
         {
             return _dbContext.Accounts.ToList();
         }
+
+        public PaginatedResultBase<AccountDTO> GetAccountJoinClass(SearchBase searchBase)
+        {
+            PaginatedResultBase<AccountDTO> result = new PaginatedResultBase<AccountDTO>();
+
+            List<AccountDTO> listAccount = (List<AccountDTO>)_dbContext.Accounts.Include(a => a.AccountJoinClasses)
+                                                .Where(a => 
+                                                a.AccountJoinClasses.Any(j => j.ClassId == searchBase.ContainerId) &&
+                                                (String.IsNullOrEmpty(searchBase.SearchText) || a.Username.ToLower().Contains(searchBase.SearchText.ToLower())))
+                                                .ToList().Select(a => new AccountDTO
+                                                   (
+                                                       a.Username,
+                                                       a.Email,
+                                                       a.Avatar,
+                                                       a.CreatedAt,
+                                                       0,
+                                                       0,
+                                                       0)
+                                                   ).ToList();
+
+            // Phân trang
+            List<AccountDTO> listAccountPaging = listAccount.Skip((searchBase.PageIndex - 1) * searchBase.PageSize)
+                                                               .Take(searchBase.PageSize).ToList();
+
+            int totalItem = listAccount.Count();
+
+            int totalPage = (int)Math.Ceiling((double)totalItem / searchBase.PageSize);
+
+            if (searchBase.PageSize == 0) totalPage = 0;
+
+            result.PageIndex = searchBase.PageIndex;
+            result.TotalPage = totalPage;
+            result.ListResult = listAccountPaging;
+
+            return result;
+        }
+
     }
 }

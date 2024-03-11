@@ -76,7 +76,7 @@ namespace GP.DAL.Repository
                                         // Điều kiện tìm kiếm
                                         .Where(x =>
                                             x.Folders.Any(f => f.FolderId == searchBase.ContainerId) &&
-                                            x.Name.ToLower().Contains(searchBase.SearchText.ToLower()) &&
+                                            (String.IsNullOrEmpty(searchBase.SearchText) || x.Name.ToLower().Contains(searchBase.SearchText.ToLower())) &&
                                             x.IsDeleted == false
                                         ).ToList()
 
@@ -104,5 +104,46 @@ namespace GP.DAL.Repository
             }
             return folderDTO;
         }
+
+        public PaginatedResultBase<FolderDTO> GetListFolderByClass(SearchBase searchBase)
+        {
+            PaginatedResultBase<FolderDTO> result = new PaginatedResultBase<FolderDTO>();
+
+            List<FolderDTO> listFolder = _dbContext.Folders
+                                            .Include(f => f.Classes)
+                                            .Include(f => f.Credits)
+                                        .Where(folder =>
+                                            folder.Classes.Any(c => c.ClassId == searchBase.ContainerId)  && // trường hợp tìm tất cả class ko theo user
+                                            (String.IsNullOrEmpty(searchBase.SearchText) || folder.Name.ToLower().Contains(searchBase.SearchText.ToLower())) &&
+                                            folder.IsDeleted == false
+                                         ).ToList().Select(folder => {
+                                             return new FolderDTO(
+                                                 folder.FolderId,
+                                                 folder.Name,
+                                                 folder.Description,
+                                                 folder.CreatedAt,
+                                                 folder.CreatedBy,
+                                                 folder.Credits.Count(c => c.IsDeleted == false)
+                                            );
+                                         }).ToList();
+
+            // Phân trang
+            List<FolderDTO> listFolderPaging = listFolder.Skip((searchBase.PageIndex - 1) * searchBase.PageSize)
+                                                         .Take(searchBase.PageSize).ToList();
+
+            int totalItem = listFolder.Count();
+
+            int totalPage = (int)Math.Ceiling((double)totalItem / searchBase.PageSize);
+
+            if (searchBase.PageSize == 0) totalPage = 0;
+
+            result.PageIndex = searchBase.PageIndex;
+            result.TotalPage = totalPage;
+            result.ListResult = listFolderPaging;
+
+            return result;
+
+        }
+
     }
 }

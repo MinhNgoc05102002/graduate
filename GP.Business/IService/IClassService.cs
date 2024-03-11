@@ -17,5 +17,12 @@ namespace GP.Business.IService
         /// <param name="searchBase"></param>
         /// <returns></returns>
         public PaginatedResultBase<ClassDTO> GetClassByUsername(SearchBase searchBase);
+
+        /// <summary>
+        /// Lấy class theo classId
+        /// </summary>
+        /// <param name="classId"></param>
+        /// <returns></returns>
+        public ClassDTO GetClassById(string classId);
     }
 }
